@@ -1,0 +1,1282 @@
+<html lang="en"><head>
+    <title>Code coverage report for node-npmtest-synchronize/node_modules/synchronize/sync.js</title>
+    <meta charset="utf-8">
+    <style>
+        body, html {
+            margin:0; padding: 0;
+        }
+        body {
+            font-family: Arial, Helvetica;
+            font-size: 10pt;
+        }
+        div.header, div.footer {
+            background: #eee;
+            padding: 1em;
+        }
+        div.header {
+            height: 160px;
+            padding: 0 1em 0 1em;
+            z-index: 100;
+            position: fixed;
+            top: 0;
+            border-bottom: 1px solid #666;
+            width: 100%;
+        }
+        div.footer {
+            border-top: 1px solid #666;
+        }
+        div.body {
+            margin-top: 170px;
+        }
+        div.meta {
+            font-size: 90%;
+            text-align: center;
+        }
+        h1, h2, h3 {
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 12pt;
+        }
+        h2 {
+            font-size: 10pt;
+        }
+        pre {
+            font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            tab-size: 2;
+        }
+
+        div.path { font-size: 110%; }
+        div.path a:link, div.path a:visited { color: #000; }
+        table.coverage { border-collapse: collapse; margin:0; padding: 0 }
+
+        table.coverage td {
+            margin: 0;
+            padding: 0;
+            color: #111;
+            vertical-align: top;
+        }
+        table.coverage td.line-count {
+            width: 50px;
+            text-align: right;
+            padding-right: 5px;
+        }
+        table.coverage td.line-coverage {
+            color: #777 !important;
+            text-align: right;
+            border-left: 1px solid #666;
+            border-right: 1px solid #666;
+        }
+
+        table.coverage td.text {
+        }
+
+        table.coverage td span.cline-any {
+            display: inline-block;
+            padding: 0 5px;
+            width: 40px;
+        }
+        table.coverage td span.cline-neutral {
+            background: #eee;
+        }
+        table.coverage td span.cline-yes {
+            background: #b5d592;
+            color: #999;
+        }
+        table.coverage td span.cline-no {
+            background: #fc8c84;
+        }
+
+        .cstat-yes { color: #111; }
+        .cstat-no { background: #fc8c84; color: #111; }
+        .fstat-no { background: #ffc520; color: #111 !important; }
+        .cbranch-no { background:  yellow !important; color: #111; }
+
+        .cstat-skip { background: #ddd; color: #111; }
+        .fstat-skip { background: #ddd; color: #111 !important; }
+        .cbranch-skip { background: #ddd !important; color: #111; }
+
+        .missing-if-branch {
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: black;
+            color: yellow;
+        }
+
+        .skip-if-branch {
+            display: none;
+            margin-right: 10px;
+            position: relative;
+            padding: 0 4px;
+            background: #ccc;
+            color: white;
+        }
+
+        .missing-if-branch .typ, .skip-if-branch .typ {
+            color: inherit !important;
+        }
+
+        .entity, .metric { font-weight: bold; }
+        .metric { display: inline-block; border: 1px solid #333; padding: 0.3em; background: white; }
+        .metric small { font-size: 80%; font-weight: normal; color: #666; }
+
+        div.coverage-summary table { border-collapse: collapse; margin: 3em; font-size: 110%; }
+        div.coverage-summary td, div.coverage-summary table  th { margin: 0; padding: 0.25em 1em; border-top: 1px solid #666; border-bottom: 1px solid #666; }
+        div.coverage-summary th { text-align: left; border: 1px solid #666; background: #eee; font-weight: normal; }
+        div.coverage-summary th.file { border-right: none !important; }
+        div.coverage-summary th.pic { border-left: none !important; text-align: right; }
+        div.coverage-summary th.pct { border-right: none !important; }
+        div.coverage-summary th.abs { border-left: none !important; text-align: right; }
+        div.coverage-summary td.pct { text-align: right; border-left: 1px solid #666; }
+        div.coverage-summary td.abs { text-align: right; font-size: 90%; color: #444; border-right: 1px solid #666; }
+        div.coverage-summary td.file { text-align: right; border-left: 1px solid #666; white-space: nowrap;  }
+        div.coverage-summary td.pic { min-width: 120px !important;  }
+        div.coverage-summary a:link { color: #000; }
+        div.coverage-summary a:visited { color: #333; }
+        div.coverage-summary tfoot td { border-top: 1px solid #666; }
+
+        div.coverage-summary .yui3-datatable-sort-indicator, div.coverage-summary .dummy-sort-indicator {
+            height: 10px;
+            width: 7px;
+            display: inline-block;
+            margin-left: 0.5em;
+        }
+        div.coverage-summary .yui3-datatable-sort-indicator {
+            background: no-repeat scroll 0 0 transparent;
+        }
+        div.coverage-summary .yui3-datatable-sorted .yui3-datatable-sort-indicator {
+            background-position: 0 -20px;
+        }
+        div.coverage-summary .yui3-datatable-sorted-desc .yui3-datatable-sort-indicator {
+            background-position: 0 -10px;
+        }
+
+        .high { background: #b5d592 !important; }
+        .medium { background: #ffe87c !important; }
+        .low { background: #fc8c84 !important; }
+
+        span.cover-fill, span.cover-empty {
+            display:inline-block;
+            border:1px solid #444;
+            background: white;
+            height: 12px;
+        }
+        span.cover-fill {
+            background: #ccc;
+            border-right: 1px solid #444;
+        }
+        span.cover-empty {
+            background: white;
+            border-left: none;
+        }
+        span.cover-full {
+            border-right: none !important;
+        }
+        pre.prettyprint {
+            border: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+        }
+        .com { color: #999 !important; }
+        .ignore-none { color: #999; font-weight: normal; }
+
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1 style="font-weight: bold;">
+        <a href="https://github.com/npmtest/node-npmtest-synchronize">npmtest-synchronize (v0.0.1)</a>
+    </h1>
+    <h1>Code coverage report for <span class="entity">node-npmtest-synchronize/node_modules/synchronize/sync.js</span></h1>
+    <h2>
+        
+        Statements: <span class="metric">8.41% <small>(18 / 214)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Branches: <span class="metric">0.97% <small>(1 / 103)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Functions: <span class="metric">0% <small>(0 / 32)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        
+        Lines: <span class="metric">10.06% <small>(18 / 179)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-synchronize/node_modules/synchronize/</a> » sync.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tbody><tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*jshint node: true, indent:2, loopfunc: true, asi: true, undef:true*/
+&nbsp;
+var Fiber = require('fibers')
+&nbsp;
+// Takes function and returns its synchronized version, it's still backward compatible and
+// can be used as asynchronous `syncFn = sync(asyncFn)`.
+//
+// Or You can provide object and it will synchronize its functions `sync(obj, fname1, fname2, ...)`.
+//
+// New synchronized version of function is backward compatible and You may call it as usual with
+// explicit callback or inside of `fiber` with `aware` and `defer` keywords.
+var sync = module.exports = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  if(arguments.length &gt; 1){</span>
+    // Synchronizing functions of object.
+<span class="cstat-no" title="statement not covered">    var obj = arguments[0]</span>
+<span class="cstat-no" title="statement not covered">    for(var i = 1; i &lt; arguments.length; i++){</span>
+<span class="cstat-no" title="statement not covered">      var fname = arguments[i]</span>
+<span class="cstat-no" title="statement not covered">      var fn = obj[fname]</span>
+<span class="cstat-no" title="statement not covered">      if(!fn) <span class="cstat-no" title="statement not covered">throw new Error("object doesn't have '" + fname + "' function!")</span></span>
+<span class="cstat-no" title="statement not covered">      obj[fname] = sync(fn)</span>
+    }
+  }else{
+<span class="cstat-no" title="statement not covered">    return sync.syncFn(arguments[0])</span>
+  }
+}
+&nbsp;
+var nextTick = global.setImmediate || <span class="branch-1 cbranch-no" title="branch not covered">process.nextTick </span>|| <span class="fstat-no" title="function not covered"><span class="branch-2 cbranch-no" title="branch not covered">function(cb) {</span> <span class="cstat-no" title="statement not covered">setTimeout(cb, 0) }</span></span>
+&nbsp;
+// Sometimes `Fiber` needed outside of `sync`.
+sync.Fiber = Fiber
+&nbsp;
+// Takes function and returns its synchronized version, it's still backward compatible and can
+// be used as asynchronous.
+sync.syncFn = <span class="fstat-no" title="function not covered">function(fn){</span>
+  // Preventing function to be synchronized twice.
+<span class="cstat-no" title="statement not covered">  if(fn._synchronized) <span class="cstat-no" title="statement not covered">return fn</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var syncFn = <span class="fstat-no" title="function not covered">function(){</span></span>
+    // Using fibers only if there's active fiber and callback not provided explicitly.
+<span class="cstat-no" title="statement not covered">    if(Fiber.current &amp;&amp; (typeof arguments[arguments.length-1] !== 'function')){</span>
+      // Calling asynchronous function with our special fiber-aware callback.
+<span class="cstat-no" title="statement not covered">      Array.prototype.push.call(arguments, sync.defer())</span>
+<span class="cstat-no" title="statement not covered">      fn.apply(this, arguments)</span>
+&nbsp;
+      // Waiting for asynchronous result.
+<span class="cstat-no" title="statement not covered">      return sync.await()</span>
+    }else{
+      // If there's no active fiber or callback provided explicitly we call original version.
+<span class="cstat-no" title="statement not covered">      return fn.apply(this, arguments)</span>
+    }
+  }
+&nbsp;
+  // Marking function as synchronized.
+<span class="cstat-no" title="statement not covered">  syncFn._synchronized = true</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return syncFn</span>
+}
+// Use it to wait for asynchronous callback.
+sync.await = Fiber.yield
+&nbsp;
+// Creates fiber-aware asynchronous callback resuming current fiber when it will be finished.
+sync.defer = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  if(!Fiber.current) <span class="cstat-no" title="statement not covered">throw new Error("no current Fiber, defer can't be used without Fiber!")</span></span>
+<span class="cstat-no" title="statement not covered">  if(Fiber.current._syncParallel) <span class="cstat-no" title="statement not covered">return sync.deferParallel()</span></span>
+  else <span class="cstat-no" title="statement not covered">return sync.deferSerial()</span>
+}
+&nbsp;
+// Exactly the same as defer, but additionally it triggers an error if there's no response
+// on time.
+sync.deferWithTimeout = <span class="fstat-no" title="function not covered">function(timeout, message){</span>
+<span class="cstat-no" title="statement not covered">  if(!Fiber.current) <span class="cstat-no" title="statement not covered">throw new Error("no current Fiber, deferWithTimeout can't be used without Fiber!")</span></span>
+<span class="cstat-no" title="statement not covered">  if(!timeout) <span class="cstat-no" title="statement not covered">throw new Error("no timeout provided!")</span></span>
+<span class="cstat-no" title="statement not covered">  if(Fiber.current._syncParallel) <span class="cstat-no" title="statement not covered">throw new Error("deferWithTimeout can't be used in parallel!")</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var defer = this.defer()</span>
+<span class="cstat-no" title="statement not covered">  var error = new Error(message || "defer timed out!")</span>
+<span class="cstat-no" title="statement not covered">  var called = false</span>
+<span class="cstat-no" title="statement not covered">  var d = setTimeout(<span class="fstat-no" title="function not covered">function(){</span></span>
+<span class="cstat-no" title="statement not covered">    if(called) <span class="cstat-no" title="statement not covered">return</span></span>
+<span class="cstat-no" title="statement not covered">    called = true</span>
+<span class="cstat-no" title="statement not covered">    defer(error)</span>
+  }, timeout)
+&nbsp;
+<span class="cstat-no" title="statement not covered">  return <span class="fstat-no" title="function not covered">function(){</span></span>
+<span class="cstat-no" title="statement not covered">    if(called) <span class="cstat-no" title="statement not covered">return</span></span>
+<span class="cstat-no" title="statement not covered">    called = true</span>
+<span class="cstat-no" title="statement not covered">    clearTimeout(d)</span>
+<span class="cstat-no" title="statement not covered">    return defer.apply(this, arguments)</span>
+  }
+}
+&nbsp;
+//
+sync.deferSerial = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  var fiber = Fiber.current</span>
+<span class="cstat-no" title="statement not covered">  if(!fiber) <span class="cstat-no" title="statement not covered">throw new Error("no current Fiber, defer can't be used without Fiber!")</span></span>
+  // if(fiber._defered) throw new Error("invalid usage, should be clear previous defer!")
+  // fiber._defered = true
+  // Prevent recursive call
+<span class="cstat-no" title="statement not covered">  var called = false</span>
+  // Returning asynchronous callback.
+<span class="cstat-no" title="statement not covered">  return <span class="fstat-no" title="function not covered">function(err, result){</span></span>
+<span class="cstat-no" title="statement not covered">    if (called) <span class="cstat-no" title="statement not covered">throw new Error("defer can't be used twice!")</span></span>
+<span class="cstat-no" title="statement not covered">    called = true</span>
+&nbsp;
+    // Wrapping in nextTick as a safe measure against not asynchronous usage.
+<span class="cstat-no" title="statement not covered">    nextTick(<span class="fstat-no" title="function not covered">function(){</span></span>
+      // fiber._defered = false
+<span class="cstat-no" title="statement not covered">      if(fiber._syncIsTerminated) <span class="cstat-no" title="statement not covered">return</span></span>
+<span class="cstat-no" title="statement not covered">      if(err){</span>
+        // Resuming fiber and throwing error.
+<span class="cstat-no" title="statement not covered">        fiber.throwInto(err)</span>
+      }else{
+        // Resuming fiber and returning result.
+<span class="cstat-no" title="statement not covered">        fiber.run(result)</span>
+      }
+    })
+  }
+}
+&nbsp;
+sync.deferParallel = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  var fiber = Fiber.current</span>
+<span class="cstat-no" title="statement not covered">  if(!fiber) <span class="cstat-no" title="statement not covered">throw new Error("no current Fiber, defer can't be used without Fiber!")</span></span>
+<span class="cstat-no" title="statement not covered">  if(!fiber._syncParallel) <span class="cstat-no" title="statement not covered">throw new Error("invalid usage, should be called in parallel mode!")</span></span>
+<span class="cstat-no" title="statement not covered">  var data = fiber._syncParallel</span>
+&nbsp;
+  // Counting amount of `defer` calls.
+<span class="cstat-no" title="statement not covered">  data.called += 1</span>
+<span class="cstat-no" title="statement not covered">  var resultIndex = data.called - 1</span>
+&nbsp;
+  // Returning asynchronous callback.
+<span class="cstat-no" title="statement not covered">  return <span class="fstat-no" title="function not covered">function(err, result){</span></span>
+    // Wrapping in nextTick as a safe measure against not asynchronous usage.
+<span class="cstat-no" title="statement not covered">    nextTick(<span class="fstat-no" title="function not covered">function(){</span></span>
+<span class="cstat-no" title="statement not covered">      if(fiber._syncIsTerminated) <span class="cstat-no" title="statement not covered">return</span></span>
+      // Error in any of parallel call will result in aborting all of the calls.
+<span class="cstat-no" title="statement not covered">      if(data.errorHasBeenThrown) <span class="cstat-no" title="statement not covered">return</span></span>
+<span class="cstat-no" title="statement not covered">      if(err){</span>
+<span class="cstat-no" title="statement not covered">        data.errorHasBeenThrown = true</span>
+        // Resuming fiber and throwing error.
+<span class="cstat-no" title="statement not covered">        fiber.throwInto(err)</span>
+      }else{
+<span class="cstat-no" title="statement not covered">        data.returned += 1</span>
+<span class="cstat-no" title="statement not covered">        data.results[resultIndex] = result</span>
+        // Resuming fiber and returning result when all callbacks finished.
+<span class="cstat-no" title="statement not covered">        if(data.returned == data.called) <span class="cstat-no" title="statement not covered">fiber.run(data.results)</span></span>
+      }
+    })
+  }
+}
+&nbsp;
+sync.defers = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  if(!Fiber.current) <span class="cstat-no" title="statement not covered">throw new Error("no current Fiber, defer can't be used without Fiber!")</span></span>
+<span class="cstat-no" title="statement not covered">  if(Fiber.current._syncParallel) <span class="cstat-no" title="statement not covered">return sync.defersParallel.apply(sync, arguments)</span></span>
+  else <span class="cstat-no" title="statement not covered">return sync.defersSerial.apply(sync, arguments)</span>
+}
+&nbsp;
+sync.defersSerial = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  var fiber = Fiber.current;</span>
+<span class="cstat-no" title="statement not covered">  if(!fiber) <span class="cstat-no" title="statement not covered">throw new Error("no current Fiber, defer can't be used without Fiber!")</span></span>
+  // if(fiber._defered) throw new Error("invalid usage, should be clear previous defer!")
+  // fiber._defered = true
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var kwds = Array.prototype.slice.call(arguments)</span>
+&nbsp;
+  // Prevent recursive call
+<span class="cstat-no" title="statement not covered">  var called = false</span>
+  // Returning asynchronous callback.
+<span class="cstat-no" title="statement not covered">  return <span class="fstat-no" title="function not covered">function(err) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (called) <span class="cstat-no" title="statement not covered">throw new Error("defer can't be used twice!")</span></span>
+<span class="cstat-no" title="statement not covered">    called = true</span>
+    // Wrapping in nextTick as a safe measure against not asynchronous usage.
+<span class="cstat-no" title="statement not covered">    var args = Array.prototype.slice.call(arguments, 1)</span>
+<span class="cstat-no" title="statement not covered">    nextTick(<span class="fstat-no" title="function not covered">function(){</span></span>
+      // fiber._defered = false
+<span class="cstat-no" title="statement not covered">      if(fiber._syncIsTerminated) <span class="cstat-no" title="statement not covered">return</span></span>
+<span class="cstat-no" title="statement not covered">      if (err) {</span>
+        // Resuming fiber and throwing error.
+<span class="cstat-no" title="statement not covered">        fiber.throwInto(err)</span>
+      } else {
+<span class="cstat-no" title="statement not covered">        var results;</span>
+<span class="cstat-no" title="statement not covered">        if(!kwds.length){</span>
+<span class="cstat-no" title="statement not covered">          results = args</span>
+        } else {
+<span class="cstat-no" title="statement not covered">          results = {}</span>
+<span class="cstat-no" title="statement not covered">          kwds.forEach(<span class="fstat-no" title="function not covered">function(kwd, i){</span></span>
+<span class="cstat-no" title="statement not covered">            results[kwd]=args[i]</span>
+          })
+        }
+<span class="cstat-no" title="statement not covered">        fiber.run(results)</span>
+      }
+    })
+  }
+}
+&nbsp;
+sync.defersParallel = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  var fiber = Fiber.current</span>
+<span class="cstat-no" title="statement not covered">  if(!fiber) <span class="cstat-no" title="statement not covered">throw new Error("no current Fiber, defer can't be used without Fiber!")</span></span>
+<span class="cstat-no" title="statement not covered">  if(!fiber._syncParallel) <span class="cstat-no" title="statement not covered">throw new Error("invalid usage, should be called in parallel mode!")</span></span>
+<span class="cstat-no" title="statement not covered">  var data = fiber._syncParallel</span>
+  // Counting amount of `defer` calls.
+<span class="cstat-no" title="statement not covered">  data.called += 1</span>
+<span class="cstat-no" title="statement not covered">  var resultIndex = data.called - 1</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">  var kwds = Array.prototype.slice.call(arguments)</span>
+  // Returning asynchronous callback.
+<span class="cstat-no" title="statement not covered">  return <span class="fstat-no" title="function not covered">function(err) {</span></span>
+    // Wrapping in nextTick as a safe measure against not asynchronous usage.
+<span class="cstat-no" title="statement not covered">    var args = Array.prototype.slice.call(arguments, 1)</span>
+<span class="cstat-no" title="statement not covered">    nextTick(<span class="fstat-no" title="function not covered">function(){</span></span>
+<span class="cstat-no" title="statement not covered">      if(fiber._syncIsTerminated) <span class="cstat-no" title="statement not covered">return</span></span>
+&nbsp;
+      // Error in any of parallel call will result in aborting all of the calls.
+<span class="cstat-no" title="statement not covered">      if(data.errorHasBeenThrown) <span class="cstat-no" title="statement not covered">return</span></span>
+<span class="cstat-no" title="statement not covered">      if (err) {</span>
+<span class="cstat-no" title="statement not covered">        data.errorHasBeenThrown = true</span>
+        // Resuming fiber and throwing error.
+<span class="cstat-no" title="statement not covered">        fiber.throwInto(err)</span>
+      }
+<span class="cstat-no" title="statement not covered">      var results;</span>
+<span class="cstat-no" title="statement not covered">      if(!kwds.length){</span>
+<span class="cstat-no" title="statement not covered">        results = args</span>
+      } else {
+<span class="cstat-no" title="statement not covered">        results = {}</span>
+<span class="cstat-no" title="statement not covered">        kwds.forEach(<span class="fstat-no" title="function not covered">function(kwd, i){</span></span>
+<span class="cstat-no" title="statement not covered">          results[kwd]=args[i]</span>
+        })
+      }
+<span class="cstat-no" title="statement not covered">      data.returned += 1</span>
+<span class="cstat-no" title="statement not covered">      data.results[resultIndex] = results</span>
+<span class="cstat-no" title="statement not covered">      if(data.returned == data.called) <span class="cstat-no" title="statement not covered">fiber.run(data.results)</span></span>
+    })
+  }
+}
+&nbsp;
+// Support for parallel calls, all `defer` calls within callback will be
+// performed in parallel.
+sync.parallel = <span class="fstat-no" title="function not covered">function(cb){</span>
+<span class="cstat-no" title="statement not covered">  var fiber = Fiber.current</span>
+<span class="cstat-no" title="statement not covered">  if(!fiber) <span class="cstat-no" title="statement not covered">throw new Error("no current Fiber, defer can't be used without Fiber!")</span></span>
+&nbsp;
+  // Enabling `defer` calls to be performed in parallel.
+  // There's an important note - error in any parallel call will result in aborting
+  // all of the parallel calls.
+<span class="cstat-no" title="statement not covered">  fiber._syncParallel = {called: 0, returned: 0, results: [], errorHasBeenThrown: false}</span>
+<span class="cstat-no" title="statement not covered">  try{</span>
+<span class="cstat-no" title="statement not covered">    cb.call(this)</span>
+  }finally{
+    // If neither `defer` nor `defers` were called within the callback, we need
+    // to run the fiber ourselves or else the fiber will unwind when `await` is called.
+    // This might happen if the user intended to enumerate an array within the
+    // callback, calling `defer` once per array item, but the array was empty.
+<span class="cstat-no" title="statement not covered">    if (!fiber._syncParallel.called) {</span>
+<span class="cstat-no" title="statement not covered">      nextTick(<span class="fstat-no" title="function not covered">function(){</span></span>
+        // Return an empty array to represent that there were no results.
+<span class="cstat-no" title="statement not covered">        if(!fiber._syncIsTerminated) <span class="cstat-no" title="statement not covered">fiber.run([])</span></span>
+      })
+    }
+<span class="cstat-no" title="statement not covered">    delete fiber._syncParallel</span>
+  }
+}
+&nbsp;
+// Executes `cb` within `Fiber`, when it finish it will call `done` callback.
+// If error will be thrown during execution, this error will be catched and passed to `done`,
+// if `done` not provided it will be just rethrown.
+sync.fiber = <span class="fstat-no" title="function not covered">function(cb, done){</span>
+<span class="cstat-no" title="statement not covered">  var that = this</span>
+<span class="cstat-no" title="statement not covered">  var fiber = Fiber(<span class="fstat-no" title="function not covered">function(){</span></span>
+    // Prevent restart fiber
+<span class="cstat-no" title="statement not covered">    if (Fiber.current._started) <span class="cstat-no" title="statement not covered">return</span></span>
+<span class="cstat-no" title="statement not covered">    if (done) {</span>
+<span class="cstat-no" title="statement not covered">      var result</span>
+<span class="cstat-no" title="statement not covered">      try {</span>
+<span class="cstat-no" title="statement not covered">        result = cb.call(that)</span>
+<span class="cstat-no" title="statement not covered">        Fiber.current._syncIsTerminated = true</span>
+      } catch (error){
+<span class="cstat-no" title="statement not covered">        return done(error)</span>
+      }
+<span class="cstat-no" title="statement not covered">      done(null, result)</span>
+    } else {
+      // Don't catch errors if done not provided!
+<span class="cstat-no" title="statement not covered">      cb.call(that)</span>
+<span class="cstat-no" title="statement not covered">      Fiber.current._syncIsTerminated = true</span>
+    }
+  })
+<span class="cstat-no" title="statement not covered">  fiber.run()</span>
+<span class="cstat-no" title="statement not covered">  fiber._started = true</span>
+}
+&nbsp;
+// Asynchronous wrapper for mocha.js tests.
+//
+//   async = sync.asyncIt
+//   it('should pass', async(function(){
+//     ...
+//   }))
+//
+sync.asyncIt = <span class="fstat-no" title="function not covered">function(cb){</span>
+<span class="cstat-no" title="statement not covered">  if(!cb) <span class="cstat-no" title="statement not covered">throw "no callback for async spec helper!"</span></span>
+<span class="cstat-no" title="statement not covered">  return <span class="fstat-no" title="function not covered">function(done){<span class="cstat-no" title="statement not covered"></span>sync.fiber(cb.bind(this), done)}</span></span>
+}
+&nbsp;
+// Same as `sync` but with verbose logging for every method invocation.
+// Ignore this method, it shouldn't be used unless you want to track down
+// tricky and complex bugs and need full information abouth how and when all
+// this async stuff has been called.
+var fiberIdCounter = 1
+sync.syncWithDebug = <span class="fstat-no" title="function not covered">function(){</span>
+<span class="cstat-no" title="statement not covered">  if(arguments.length &gt; 1){</span>
+    // Synchronizing functions of object.
+<span class="cstat-no" title="statement not covered">    var obj = arguments[0]</span>
+<span class="cstat-no" title="statement not covered">    for(var i = 1; i &lt; arguments.length; i++){</span>
+<span class="cstat-no" title="statement not covered">      (<span class="fstat-no" title="function not covered">function(fname){</span></span>
+<span class="cstat-no" title="statement not covered">        var fn = obj[fname]</span>
+<span class="cstat-no" title="statement not covered">        if(!fn) <span class="cstat-no" title="statement not covered">throw new Error("object doesn't have '" + fname + "' function!")</span></span>
+<span class="cstat-no" title="statement not covered">        var syncedFn = sync(fn)</span>
+<span class="cstat-no" title="statement not covered">        obj[fname] = <span class="fstat-no" title="function not covered">function(){</span></span>
+<span class="cstat-no" title="statement not covered">          if(Fiber.current &amp;&amp; Fiber.current._fiberId === undefined){</span>
+<span class="cstat-no" title="statement not covered">            Fiber.current._fiberId = fiberIdCounter</span>
+<span class="cstat-no" title="statement not covered">            fiberIdCounter = fiberIdCounter + 1</span>
+<span class="cstat-no" title="statement not covered">            Fiber.current._callbackLevel = 0</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered">          var fiberId = '-'</span>
+<span class="cstat-no" title="statement not covered">          if(Fiber.current){</span>
+<span class="cstat-no" title="statement not covered">            fiberId = Fiber.current._fiberId</span>
+<span class="cstat-no" title="statement not covered">            Fiber.current._callbackLevel = Fiber.current._callbackLevel + 1</span>
+          }
+&nbsp;
+<span class="cstat-no" title="statement not covered">          var indent = '    '</span>
+<span class="cstat-no" title="statement not covered">          if(Fiber.current)</span>
+<span class="cstat-no" title="statement not covered">            for(var j = 0; j &lt; Fiber.current._callbackLevel; j++) <span class="cstat-no" title="statement not covered">indent = indent + '  '</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered">          console.log(fiberId + indent + this.constructor.name + '.' +</span>
+          fname + " called", JSON.stringify(arguments))
+&nbsp;
+<span class="cstat-no" title="statement not covered">          var result</span>
+<span class="cstat-no" title="statement not covered">          try{</span>
+<span class="cstat-no" title="statement not covered">            result = syncedFn.apply(this, arguments)</span>
+          }finally{
+<span class="cstat-no" title="statement not covered">            console.log(fiberId + indent + this.constructor.name + '.' +</span>
+            fname + " finished")
+&nbsp;
+<span class="cstat-no" title="statement not covered">            if(Fiber.current)</span>
+<span class="cstat-no" title="statement not covered">              Fiber.current._callbackLevel = Fiber.current._callbackLevel - 1</span>
+          }
+<span class="cstat-no" title="statement not covered">          return result</span>
+        }
+      })(arguments[i])
+    }
+  }else{
+<span class="cstat-no" title="statement not covered">    return sync.syncFn(arguments[0])</span>
+  }
+}
+&nbsp;
+&nbsp;</pre></td></tr>
+</tbody></table></pre>
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Tue Apr 18 2017 11:49:19 GMT+0000 (UTC)</div>
+</div>
+
+
+</body></html>
