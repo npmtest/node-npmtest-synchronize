@@ -1,6 +1,6 @@
 # npmtest-synchronize
 
-#### test coverage for  [synchronize (v2.0.0)](http://alexeypetrushin.github.com/synchronize)  [![npm package](https://img.shields.io/npm/v/npmtest-synchronize.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-synchronize) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-synchronize.svg)](https://travis-ci.org/npmtest/node-npmtest-synchronize)
+#### basic test coverage for  [synchronize (v2.0.0)](http://alexeypetrushin.github.com/synchronize)  [![npm package](https://img.shields.io/npm/v/npmtest-synchronize.svg?style=flat-square)](https://www.npmjs.org/package/npmtest-synchronize) [![travis-ci.org build-status](https://api.travis-ci.org/npmtest/node-npmtest-synchronize.svg)](https://travis-ci.org/npmtest/node-npmtest-synchronize)
 
 #### Turns asynchronous function into synchronous
 
@@ -10,7 +10,7 @@
 |--:|:--|
 | coverage : | [![istanbul-coverage](https://npmtest.github.io/node-npmtest-synchronize/build/coverage.badge.svg)](https://npmtest.github.io/node-npmtest-synchronize/build/coverage.html/index.html)|
 | test-report : | [![test-report](https://npmtest.github.io/node-npmtest-synchronize/build/test-report.badge.svg)](https://npmtest.github.io/node-npmtest-synchronize/build/test-report.html)|
-| build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-synchronize/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-synchronize/tree/gh-pages/build)|
+| test-server-github : | [![github.com test-server](https://npmtest.github.io/node-npmtest-synchronize/GitHub-Mark-32px.png)](https://npmtest.github.io/node-npmtest-synchronize/build/app/index.html) | | build-artifacts : | [![build-artifacts](https://npmtest.github.io/node-npmtest-synchronize/glyphicons_144_folder_open.png)](https://github.com/npmtest/node-npmtest-synchronize/tree/gh-pages/build)|
 
 - [https://npmtest.github.io/node-npmtest-synchronize/build/coverage.html/index.html](https://npmtest.github.io/node-npmtest-synchronize/build/coverage.html/index.html)
 
@@ -79,7 +79,8 @@
     "scripts": {
         "test": "mocha -R spec test/*.js"
     },
-    "version": "2.0.0"
+    "version": "2.0.0",
+    "bin": {}
 }
 ```
 
